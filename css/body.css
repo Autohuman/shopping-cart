@@ -256,7 +256,7 @@ body{
     text-align: left;
     line-height: 20px;
     width: 93%;
-    background-color: #ffffff;
+    background-color: blue;
 }
 #body-cart .shopCategory span label{
     display: inline-block;
@@ -279,7 +279,7 @@ body{
     display: inline-block;
     margin: 0;
     padding-left: 0;
-    width: 95%;
+    width: 100%;
 }
 #body-cart .commodity ul li{
     overflow: hidden;
@@ -294,12 +294,17 @@ body{
     display: block;
     width: 7%;
     line-height: 100px;
+    text-align: right;
+}
+#body-cart .commodity ul .CommodityList1 input{
+  float: none;
+  display: inline-block;
 }
 #body-cart .commodity ul .CommodityList2{
     display: block;
     width: 40%;
     padding: 10px 0;
-    height: 80px;
+    line-height: 80px;
     text-align: left;
 }
 #body-cart .commodity ul .CommodityList2 .CommodityItemImg{
@@ -342,26 +347,20 @@ body{
     line-height: 100px;
 }
 #body-cart .commodity ul .CommodityList4{
+    /* padding: 0 17px; */
+    width: 100px;
     display: block;
-    min-height: 100px;
-    height: 100px;
+    height: 24px;
+    padding:38px 30px 38px 30px;
 }
-#body-cart .commodity ul .CommodityList4 button{
-    margin-top: 40px;
-    width: 12px;
+#body-cart .commodity ul .CommodityList4 button,input{
+    display: inline;
     float: left;
-}
-#body-cart .commodity ul .CommodityList4 .plusBtn{
-    margin-left: 32px;
-}
-#body-cart .commodity ul .CommodityList4 .minuBtn{
-    margin-right: 32px;
 }
 #body-cart .commodity ul .CommodityList4 input{
-    margin-top: 40px;
-    max-height: 14px;
-    width: 45px;
-    float: left;
+    box-sizing: border-box;
+    min-height: 24px;
+    width: 50px;
 }
 #body-cart .commodity ul .CommodityList5{
     padding-top: 20px;
@@ -393,17 +392,18 @@ body{
     left: 0 ;
     right: 0;
     margin: 0 auto;
-    width: 1200px;
+    width: 1130px;
     height: 50px;
     color: #000000;
     background-color: rgba(199, 199, 199, 0.14);
     text-align: left;
+    padding-left: 70px;
 }
-.shoppingCartFinal .selectAllFinal{
-    margin-left: 8%;
-    margin-right: 2%;
+.shoppingCartFinal #selectAllFinal{
+    float: none;
+    text-align: left;
     padding-top: 1%;
-    width: 10%;
+    width: 3%;
     display: inline;
 }
 .shoppingCartFinal a{
