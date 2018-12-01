@@ -388,7 +388,7 @@ shoppingCartFinal em{
 /*recommend*/
 .recommend{
     margin: 3% auto;
-    width: 85%;
+    width: 1150px;
     display: inline-block;
     height: 100%;
     text-align: center;
@@ -482,7 +482,7 @@ shoppingCartFinal em{
     margin: 0 auto;
     display: block;
     text-align: center;
-    width: 85%;
+    width: 1150px;
     line-height: 150px;
     background-color: burlywood;
 }
