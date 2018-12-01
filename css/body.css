@@ -8,131 +8,80 @@ body{
 }
 
 /*checkbox样式*/
-/* The checkContainer */
-.checkContainer {
-    display: block;
-    position: relative;
-    padding-left: 35px;
-    margin-bottom: 12px;
-    cursor: pointer;
-    font-size: 22px;
-    line-height: 100%;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+input[type="checkbox"]{
+  width:15px;
+  height:15px;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 15px;
+  position: relative;
 }
-
-/* Hide the browser's default checkbox */
-.checkContainer input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0;
+input[type="checkbox"]::before{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #fff;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #d9d9d9
 }
-
-/* Create a custom checkbox */
-.checkmark {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 25px;
-    width: 25px;
-    background-color: #eee;
+input[type="checkbox"]:checked::before{
+  content: "\2713";
+  background-color: #fff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width:100%;
+  border: 1px solid #e50232;
+  color:#e50232;
+  font-size: 20px;
+  font-weight: bold;
 }
-
-/* On mouse-over, add a grey background color */
-.checkContainer:hover input ~ .checkmark {
-    background-color: #ccc;
-}
-
-/* When the checkbox is checked, add a blue background */
-.checkContainer input:checked ~ .checkmark {
-    background-color: #2196F3;
-}
-
-/* Create the checkmark/indicator (hidden when not checked) */
-.checkmark:after {
-    content: "";
-    position: absolute;
-    display: none;
-}
-
-/* Show the checkmark when checked */
-.checkContainer input:checked ~ .checkmark:after {
-    display: block;
-}
-
-/* Style the checkmark/indicator */
-.checkContainer .checkmark:after {
-    left: 9px;
-    top: 5px;
-    width: 5px;
-    height: 10px;
-    border: solid white;
-    border-width: 0 3px 3px 0;
-    -webkit-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    transform: rotate(45deg);
-}
-
-
 
 /*Navigation*/
-
 .haoNav{
+    display: inline-block;
     background: linear-gradient(rgba(0, 98, 235, 0.34),rgba(0, 98, 235, 0.34)),url(../images/nav-image.jpg) center;
     width: 100%;
     line-height: 15px;
     background-size: cover;
     z-index: 50;
-    display: inline-block;
 }
-.haoNav .toggle{
-    width: 100%;
-    padding: 10px 20px;
-    background-color: rgba(0, 98, 235, 0.34);
-    text-align: right;
-    box-sizing: border-box;
-    color: #FFFFFF;
-    font-size: 30px;
-    display: none;
+.haoNav a{
+    color: #FFF;
+    text-decoration: none;
 }
-.haoNav .toggle i:hover{
-    cursor: pointer;
+.haoNav a:hover {
+    color: red;
 }
-.haoNav ul{
+.haoNav .haoMenu ul{
     float: right;
     margin: 0;
     padding-right: 40px;
 }
-.haoNav ul li{
+.haoNav .haoMenu ul li{
     display: inline-block;
     padding: 16px 32px;
 }
-.haoNav ul li a{
-    text-decoration: none;
-    color: rgba(255, 255, 255, 0.77);
-    font-size: 16px;
-}
-.navLogo{
+.haoNav .navLogo{
+    display: inline-block;
     height: 39px;
     float: left;
-    margin: 5px 48px;
+    margin: 5px 0 5px 48px;
 }
+
 @media (max-width:823px){
     .navLogo{
         display: none;
     }
-    .haoNav .toggle{
-        display: block;
-    }
     .haoNav ul{
-        display: none;
+        display: block;
     }
     .haoNav ul li{
         width: 100%;
+        display: block;
         border-radius: 7px;
         text-align: center;
     }
@@ -142,7 +91,7 @@ body{
 .searchBox{
     display: block;
     background-color: #ffffff;
-    width: 100% ;
+    width: 1200px ;
     height: 90px;
 }
 .searchBox .searchoxLogo{
@@ -161,7 +110,6 @@ body{
     line-height: 90px;
     width: 30%;
     float: right;
-    margin-right: 9.3%;
     background-color: #de1717;
 }
 
@@ -200,12 +148,13 @@ body{
 #SumItem2{
     margin-top: 0.9%;
     display: block;
-    width: 40%;
+    width: 37%;
     height: 30px;
-    text-align: left;
+    text-align: center;
     padding-left: 5%;
 }
 #SumItem3{
+    text-align: center;
     margin-top: 0.9%;
     display: block;
     width: 9%;
@@ -224,7 +173,7 @@ body{
     height: 30px;
 }
 #SumItem6{
-    text-align: left;
+    text-align: center;
     padding-left: 2%;
     margin-top: 0.9%;
     display: block;
@@ -232,8 +181,8 @@ body{
     height: 30px;
 }
 
-/*Shopping-Cart*/
 
+/*Shopping-Cart*/
 #body-cart{
     margin: 0 auto;
     width: 1100px;
@@ -256,7 +205,8 @@ body{
     text-align: left;
     line-height: 20px;
     width: 93%;
-    background-color: blue;
+    background-color: rgba(98, 98, 98, 0.04);
+    border-radius: 1px;
 }
 #body-cart .shopCategory span label{
     display: inline-block;
@@ -297,6 +247,7 @@ body{
     text-align: right;
 }
 #body-cart .commodity ul .CommodityList1 input{
+  margin-right: 10px;
   float: none;
   display: inline-block;
 }
@@ -399,11 +350,11 @@ body{
     text-align: left;
     padding-left: 70px;
 }
-.shoppingCartFinal #selectAllFinal{
+.shoppingCartFinal #selectAll2{
     float: none;
+    margin-right: 10px;
     text-align: left;
     padding-top: 1%;
-    width: 3%;
     display: inline;
 }
 .shoppingCartFinal a{
@@ -418,6 +369,7 @@ shoppingCartFinal em{
     color: rgba(255, 25, 0, 0.71);
 }
 .shoppingCartFinal button{
+    cursor: pointer;
     color: rgba(255, 255, 255, 0.94);
     font-size: large;
     font-family: 微软雅黑;
