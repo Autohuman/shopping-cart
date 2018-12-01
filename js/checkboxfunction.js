@@ -2,6 +2,8 @@
 /*全选框功能*/
 let group = document.getElementsByName("selectAll");
 let allCheckBox = document.getElementsByClassName("checkbox");
+let storeGroup = document.getElementsByName("shopCheck");
+let singleCommidityGroup = document.getElementsByName('selectCommodity');
 
 for (let i = 0; i < group.length; i++) {
     group[i].onclick = function(){
@@ -31,7 +33,7 @@ function contains(arr, obj) {
 }
 
 /*店铺下商品全选框功能*/
-let storeGroup = document.getElementsByName("shopCheck");
+
 
 for (let i = 0; i < storeGroup.length; i++) {
     storeGroup[i].onclick = function() {
@@ -43,6 +45,7 @@ for (let i = 0; i < storeGroup.length; i++) {
       if (contains(arr,m)) {
         // LAA为从SSS到具体某商家下对应的所有复选框的“映射”，选取到所有对应的复选框
         let laa = sss[m].childNodes[1].childNodes[0];
+        console.log(laa);
         if (status) {
             laa.checked = true;
         }
@@ -72,31 +75,45 @@ for (let i = 0; i < storeGroup.length; i++) {
   }
 }
 /*具体某件商品的复选框状态设置*/
-let singleCommidityGroup = document.getElementsByName('selectCommodity');
+
 
 for (let i = 0; i < singleCommidityGroup.length; i++) {
 
     singleCommidityGroup[i].onchange = function() {
-
     let commidityCheckCount = 0;
-
-
+    let commidityContainer = new Array();
     let commidityProjectionFirst = singleCommidityGroup[i].parentNode.parentNode.parentNode.getElementsByTagName('ul');
     for (let m = 0; m < commidityProjectionFirst.length; m++) {
       let commidityProjectionSecond = commidityProjectionFirst[m].childNodes[1].firstChild;
-      // for (let s = 0; s < commidityProjectionSecond.length; s++) {
-      //   if (commidityProjectionSecond[s].checked) {
-      //     commidityCheckCount++;
-      //   }
-      // }
-      console.log(commidityProjectionSecond);
-      // if (commidityCheckCount == commidityProjectionSecond.length) {
-      //   let changeobj = singleCommidityGroup[i];
-        // for (let n = 0; n < storeGroup.length; n++) {
-        //   let changeobj =
-        //   storeGroup[n].checked = true;
-        // }
+      commidityContainer.push(commidityProjectionSecond);
+    }
+    for (let m= 0; m < commidityContainer.length; m++) {
+      if (commidityContainer[m].checked == true) {
+        commidityCheckCount++;
+      }
+    }
+    if (commidityCheckCount === commidityContainer.length) {
+      singleCommidityGroup[i].parentNode.parentNode.parentNode.parentNode.childNodes[1].childNodes[1].firstChild.checked = true;
+      findWhentoChange()
+    }
+    else if (commidityCheckCount == 0) {
+      singleCommidityGroup[i].parentNode.parentNode.parentNode.parentNode.childNodes[1].childNodes[1].firstChild.checked = false;
+      findWhentoChange()
 
     }
+
+function findWhentoChange(){
+      let storeCheckCount = 0;
+      for (let m = 0; m < storeGroup.length; m++) {
+        if (storeGroup[m].checked == true) {
+          storeCheckCount++;
+        }
+      }
+      if (storeCheckCount == storeGroup.length) {
+        for (let n = 0; n < group.length; n++) {
+          group[n].checked = true;
+        }
+      }
   }
+}
 }
