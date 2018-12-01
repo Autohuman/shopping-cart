@@ -18,3 +18,14 @@ for (let i = 0; i < group.length; i++) {
       }
   }
 }
+
+/*判断元素是否在数组中的函数*/
+function contains(arr, obj) {
+    var i = arr.length;
+    while (i--) {
+        if (arr[i] === obj) {
+            return true;
+        }
+    }
+    return false;
+}
