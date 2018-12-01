@@ -8,6 +8,7 @@ body{
 }
 
 /*checkbox样式*/
+
 input[type="checkbox"]{
   width:15px;
   height:15px;
