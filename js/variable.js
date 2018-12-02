@@ -39,32 +39,7 @@ else{
     document.querySelector("#body-cart").innerHTML += object;
     }
 }
-/*输入框内修改数量功能*/
-let commodityNumInputGroup = document.getElementsByClassName("commodityNumInput");
-for (let i = 0; i < commodityNumInputGroup.length; i++) {
-  commodityNumInputGroup[i].onblur = function(){
-    let commodityNum = commodityNumInputGroup[i].value;
-    let reg = /^[1-9][0-9]*$/
-    if (!reg.test(commodityNum)) {
-      alert("Please enter avaliable number");
-      commodityNumInputGroup[i].value = 1;
-    }
-    else if (commodityNum >= 10000) {
-      alert("Number should below 10000")
-      commodityNumInputGroup[i].value = 1;
-    }
-  }
-  let commidityID = commodityNumInputGroup[i].parentNode.parentNode.parentNode.id;
-  let itsPrice = "";
-  for (var m = 0; m < commidityGroup.length; m++) {
-    if (commidityGroup[m].id == commidityID) {
-      itsPrice = commidityGroup[m].price;
-    }
-  }
-  commodityNumInputGroup[i].onchange = function(event){
-    event.target.parentNode.parentNode.childNodes[4].firstChild.textContent = event.target.value * itsPrice;
-  }
-}
+
 
 /*数量加减按钮功能*/
 let buttonMinusGroup = document.getElementsByClassName("fa-minus");
@@ -82,6 +57,8 @@ for (var i = 0; i < buttonMinusGroup.length; i++) {
         itsPrice = commidityGroup[m].price;
       }
     }
+
+    calculateAllPrice()
     event.target.parentNode.parentNode.parentNode.childNodes[4].firstChild.textContent = itsPrice * object.value;
   }
 
@@ -98,6 +75,64 @@ for (var i = 0; i < buttonMinusGroup.length; i++) {
         itsPrice = commidityGroup[m].price;
       }
     }
+    calculateAllPrice()
     event.target.parentNode.parentNode.parentNode.childNodes[4].firstChild.textContent = itsPrice * object.value;
   }
+}
+
+/*输入框内修改数量功能*/
+let commodityNumInputGroup = document.getElementsByClassName("commodityNumInput");
+
+for (let i = 0; i < commodityNumInputGroup.length; i++) {
+
+    commodityNumInputGroup[i].onblur = function(event){
+    let commodityNum = commodityNumInputGroup[i].value;
+    let reg = /^[1-9][0-9]*$/
+    let commodityNumInputID = event.target.parentNode.parentNode.parentNode.id;
+
+    if (!reg.test(commodityNum)) {
+      alert("Please enter avaliable number");
+      commodityNumInputGroup[i].value = 1;
+    }
+    else if (commodityNum >= 10000) {
+      alert("Number should below 10000")
+      commodityNumInputGroup[i].value = 1;
+    }
+    for (let v = 0; v < commidityGroup.length; v++) {
+      if (commodityNumInputID == commidityGroup[v].id) {
+        commidityGroup[v].ordercount = event.target.value;
+      }
+    }
+    calculateAllPrice()
+
+  }
+  let commidityID = commodityNumInputGroup[i].parentNode.parentNode.parentNode.id;
+  let itsPrice = "";
+  for (let m = 0; m < commidityGroup.length; m++) {
+    if (commidityGroup[m].id == commidityID) {
+      itsPrice = commidityGroup[m].price;
+    }
+  }
+  commodityNumInputGroup[i].onchange = function(event){
+    event.target.parentNode.parentNode.childNodes[4].firstChild.textContent = event.target.value * itsPrice;
+  }
+}
+
+
+/*合计功能*/
+function calculateAllPrice() {
+let objectToCalcu = document.getElementsByClassName("commodity");
+let totalCalcu = 0;
+for (var i = 0; i < objectToCalcu.length; i++) {
+  let objectToCheck = objectToCalcu[i].childNodes[1].firstChild.firstChild;
+  if (objectToCheck.checked) {
+    let whatPrice = objectToCalcu[i].childNodes[1].childNodes[2].firstChild.textContent;
+    let whatNum = objectToCalcu[i].childNodes[1].childNodes[3].childNodes[1].value;
+    totalCalcu += whatPrice * whatNum;
+
+  }
+
+}
+
+document.getElementsByClassName("shoppingCartFinal")[0].childNodes[12].childNodes[1].textContent = "￥" + totalCalcu;
 }
