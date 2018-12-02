@@ -1,5 +1,7 @@
 let shopGroup = [{id:13579,name:"京东自营"},{id:12345,name:"郝轲"}];   /*店铺列表*/
-let commidityGroup = [{id:123456789,src:"images/tamako.jpg",name:"良心商家良心商家良心商家良心商家良心商家",info:"颜色；赤橙黄绿青蓝紫.大小：超级大",price:19999.00,shopid:13579,ordercount:100},{id:12345678,src:"images/CommodityItemImg1.jpg",name:"无敌是多么的寂寞无敌是多么的寂寞无敌是多么的寂寞",info:"无敌是多么的寂寞无敌是多么的寂寞",price:19999.00,shopid:12345,ordercount:10},{id:123456789,src:"images/tamako.jpg",name:"良心商家良心商家良心商家良心商家良心商家",info:"颜色；赤橙黄绿青蓝紫.大小：超级大",price:19999.00,shopid:13579,ordercount:1},{id:12345678,src:"images/CommodityItemImg1.jpg",name:"无敌是多么的寂寞无敌是多么的寂寞无敌是多么的寂寞",info:"无敌是多么的寂寞无敌是多么的寂寞",price:19999.00,shopid:12345,ordercount:10}];    /*商品列表*/
+let commidityGroup = [{id:123456789,src:"images/tamako.jpg",name:"良心商家良心商家良心商家良心商家良心商家",info:"颜色；赤橙黄绿青蓝紫.大小：超级大",price:19999.00,shopid:13579,ordercount:100},
+{id:12345678,src:"images/CommodityItemImg1.jpg",name:"无敌是多么的寂寞无敌是多么的寂寞无敌是多么的寂寞",info:"无敌是多么的寂寞无敌是多么的寂寞",price:19999.00,shopid:12345,ordercount:10},
+{id:1234567899,src:"images/images3.png",name:"大彩笔大彩笔郝轲大彩笔大彩笔郝轲",info:"大彩笔大彩笔大彩笔大彩笔大彩笔大彩笔",price:18899.00,shopid:12345,ordercount:99}];    /*商品列表*/
 // let commidityGroup = [];
 if (commidityGroup.length == 0) {
   document.querySelector("#body-cart").innerHTML += "<div class='alertInfo'>“购物车中没有商品，快去添加吧”</div>";
@@ -40,6 +42,16 @@ else{
     }
 }
 
+/*验证变量是否在数组中存在，返回布尔*/
+function contain(arr,str){
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] == str) {
+      return true;
+    }
+  }
+  return false;
+}
+
 
 /*数量加减按钮功能*/
 let buttonMinusGroup = document.getElementsByClassName("fa-minus");
@@ -58,7 +70,7 @@ for (var i = 0; i < buttonMinusGroup.length; i++) {
       }
     }
 
-    calculateAllPrice()
+    calculateTotalPrice()
     event.target.parentNode.parentNode.parentNode.childNodes[4].firstChild.textContent = itsPrice * object.value;
   }
 
@@ -75,7 +87,7 @@ for (var i = 0; i < buttonMinusGroup.length; i++) {
         itsPrice = commidityGroup[m].price;
       }
     }
-    calculateAllPrice()
+    calculateTotalPrice()
     event.target.parentNode.parentNode.parentNode.childNodes[4].firstChild.textContent = itsPrice * object.value;
   }
 }
@@ -103,7 +115,7 @@ for (let i = 0; i < commodityNumInputGroup.length; i++) {
         commidityGroup[v].ordercount = event.target.value;
       }
     }
-    calculateAllPrice()
+    calculateTotalPrice()
 
   }
   let commidityID = commodityNumInputGroup[i].parentNode.parentNode.parentNode.id;
@@ -120,19 +132,45 @@ for (let i = 0; i < commodityNumInputGroup.length; i++) {
 
 
 /*合计功能*/
-function calculateAllPrice() {
-let objectToCalcu = document.getElementsByClassName("commodity");
-let totalCalcu = 0;
-for (var i = 0; i < objectToCalcu.length; i++) {
-  let objectToCheck = objectToCalcu[i].childNodes[1].firstChild.firstChild;
-  if (objectToCheck.checked) {
-    let whatPrice = objectToCalcu[i].childNodes[1].childNodes[2].firstChild.textContent;
-    let whatNum = objectToCalcu[i].childNodes[1].childNodes[3].childNodes[1].value;
-    totalCalcu += whatPrice * whatNum;
+calculateTotalPrice()
+function calculateTotalPrice() {
+  let object = document.getElementsByClassName("commodity");
+  let totalCalcu = 0;
+  let checkedContainer = [];
 
+  for (let i = 0; i < object.length; i++) {
+    if(object[i].childNodes[1].firstChild.firstChild.checked){
+      checkedContainer.push(object[i].id);
+    }
   }
+  for (let i = 0; i < commidityGroup.length; i++) {
+    if (contain(checkedContainer,commidityGroup[i].id)) {
+      totalCalcu += commidityGroup[i].price * commidityGroup[i].ordercount;
 
+    }
+  }
+  document.getElementsByClassName("shoppingCartFinal")[0].childNodes[12].childNodes[1].textContent = "￥" + totalCalcu;
 }
 
-document.getElementsByClassName("shoppingCartFinal")[0].childNodes[12].childNodes[1].textContent = "￥" + totalCalcu;
+function ArrayOutput() {
+  let object = document.getElementsByClassName("commodity");
+  let checkedContainer = [];
+  let outputContainer = [];
+
+  for (let i = 0; i < object.length; i++) {
+    if(object[i].childNodes[1].firstChild.firstChild.checked){
+      checkedContainer.push(object[i].id);
+    }
+  }
+  for (let i = 0; i < commidityGroup.length; i++) {
+    if (contain(checkedContainer,commidityGroup[i].id)) {
+      outputContainer.push(commidityGroup[i]);
+    }
+  }
+  if (outputContainer.length == 0) {
+    alert("At Least One Goods");
+  }
+  else {
+    console.log(outputContainer);
+  }
 }

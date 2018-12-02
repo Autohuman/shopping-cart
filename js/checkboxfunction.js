@@ -5,6 +5,7 @@ let allCheckBox = document.getElementsByClassName("checkbox");
 let storeGroup = document.getElementsByName("shopCheck");
 let singleCommidityGroup = document.getElementsByName('selectCommodity');
 
+/*全选框功能*/
 for (let i = 0; i < group.length; i++) {
     group[i].onclick = function(){
       let status = group[i].checked;
@@ -18,6 +19,7 @@ for (let i = 0; i < group.length; i++) {
           allCheckBox[s].checked = false;
         }
       }
+      calculateTotalPrice()
   }
 }
 
@@ -40,7 +42,8 @@ for (let i = 0; i < storeGroup.length; i++) {
           }
       }
     }
-    calculateAllPrice()
+
+    calculateTotalPrice();
 }
 
   // 此处开始验证是否需要修改最大的全选复选框的checked属性
@@ -56,7 +59,7 @@ for (let i = 0; i < storeGroup.length; i++) {
         group[n].checked = true;
       }
     }
-    calculateAllPrice()
+    calculateTotalPrice()
   }
 }
 
@@ -110,6 +113,12 @@ for (let i = 0; i < singleCommidityGroup.length; i++) {
       singleCommidityGroup[i].parentNode.parentNode.parentNode.parentNode.firstChild.firstChild.firstChild.checked = true;
       findWhentoChange()
     }
-    calculateAllPrice()
+    calculateTotalPrice()
   }
+}
+
+
+/*结算按钮提交数组结果*/
+document.querySelector("#shoppingCartSubmit").onclick = function(){
+  ArrayOutput();
 }
