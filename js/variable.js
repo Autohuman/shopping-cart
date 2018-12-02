@@ -1,6 +1,7 @@
 let shopGroup = [{id:13579,name:"京东自营"},{id:12345,name:"郝轲"}];   /*店铺列表*/
 let commidityGroup = [{id:123456789,src:"images/tamako.jpg",name:"良心商家良心商家良心商家良心商家良心商家",info:"颜色；赤橙黄绿青蓝紫.大小：超级大",price:19999.00,shopid:13579,ordercount:100},
 {id:12345678,src:"images/CommodityItemImg1.jpg",name:"无敌是多么的寂寞无敌是多么的寂寞无敌是多么的寂寞",info:"无敌是多么的寂寞无敌是多么的寂寞",price:19999.00,shopid:12345,ordercount:10},
+
 {id:1234567899,src:"images/images3.png",name:"大彩笔大彩笔郝轲大彩笔大彩笔郝轲",info:"大彩笔大彩笔大彩笔大彩笔大彩笔大彩笔",price:18899.00,shopid:12345,ordercount:99}];    /*商品列表*/
 // let commidityGroup = [];
 if (commidityGroup.length == 0) {
@@ -173,4 +174,8 @@ function ArrayOutput() {
   else {
     console.log(outputContainer);
   }
+}
+
+document.querySelector("#shoppingCartSubmit").onclick = function(){
+  ArrayOutput();
 }

@@ -119,6 +119,3 @@ for (let i = 0; i < singleCommidityGroup.length; i++) {
 
 
 /*结算按钮提交数组结果*/
-document.querySelector("#shoppingCartSubmit").onclick = function(){
-  ArrayOutput();
-}

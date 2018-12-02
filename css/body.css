@@ -440,6 +440,10 @@ shoppingCartFinal em{
 .recommend .fa-heart{
     color: red;
 }
+.recommend .fa-shopping-bag{
+  color: #e2242e;
+  font-size: medium;
+}
 .recommend .commodityType{
 
     border-radius: 1px;
