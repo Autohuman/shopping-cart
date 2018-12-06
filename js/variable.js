@@ -43,7 +43,7 @@ else{
         commidityInfoObj += commidityGroup[m].ordercount;
         commidityInfoObj += "' /><button class='button button-square button-plus button-tiny'><i class='fa fa-plus'></i></button></li><li class='CommodityList5'><p class='smallCalcu'>";
         commidityInfoObj += "￥" + commidityGroup[m].ordercount * commidityGroup[m].price;
-        commidityInfoObj += "</p></li><li class='CommodityList6'><a class='#'>删除商品</a><a class='#'>加入我的关注</a></li></ul></div>";
+        commidityInfoObj += "</p></li><li class='CommodityList6'><a class='delete'>删除商品</a><a class='#'>加入我的关注</a></li></ul></div>";
         commidityInfoObjSum += commidityInfoObj;
         }
       }

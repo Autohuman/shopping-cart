@@ -271,22 +271,23 @@ input[type="checkbox"]:checked::before{
     border-radius: 2px;
     display: block;
     width: 40%;
-    padding: 10px 0;
+    padding: 6px 0;
     line-height: 80px;
     text-align: left;
 }
 #body-cart .commodity ul .CommodityList2 .CommodityItemImg{
     float: left;
     display: inline-block;
-    width: 20%;
-    padding: 0 auto 0 auto;
-    border: 5px black;
+    width: 70px;
+    height: 76px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: 1px solid black;
 }
 #body-cart .commodity ul .CommodityList2 .CommodityItemImg .CommodityItemImage{
     display: block;
-    max-height: 80px;
-    max-width: 80px;
-    margin: 0;
+    max-height: 70px;
+    max-width: 70px;
 }
 #body-cart .commodity ul .CommodityList2 .CommodityItemName{
     text-decoration: none;
