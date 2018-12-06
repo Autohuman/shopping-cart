@@ -1,9 +1,18 @@
-let shopGroup = [{id:13579,name:"京东自营"},{id:12345,name:"郝轲"}];   /*店铺列表*/
-let commidityGroup = [{id:123456789,src:"images/tamako.jpg",name:"良心商家良心商家良心商家良心商家良心商家",info:"颜色；赤橙黄绿青蓝紫.大小：超级大",price:19999.00,shopid:13579,ordercount:100},
-{id:12345678,src:"images/CommodityItemImg1.jpg",name:"无敌是多么的寂寞无敌是多么的寂寞无敌是多么的寂寞",info:"无敌是多么的寂寞无敌是多么的寂寞",price:19999.00,shopid:12345,ordercount:10},
+function getJson(url){
+  let xhr = new XMLHttpRequest();
+  xhr.open("GET",url,false);
+  xhr.send();
+  return JSON.parse(xhr.response);
+}
 
-{id:1234567899,src:"images/images3.png",name:"大彩笔大彩笔郝轲大彩笔大彩笔郝轲",info:"大彩笔大彩笔大彩笔大彩笔大彩笔大彩笔",price:18899.00,shopid:12345,ordercount:99}];    /*商品列表*/
-// let commidityGroup = [];
+
+  let shopGroup = [{id:1,name:"京东自营"}];
+  let commidityGroup = getJson("json/shopping-cart.json").data;
+   /*店铺列表*/
+// let commidityGroup = [{id:123456789,src:"images/tamako.jpg",name:"良心商家良心商家良心商家良心商家良心商家",info:"颜色；赤橙黄绿青蓝紫.大小：超级大",price:19999.00,shopid:13579,ordercount:100},
+// {id:12345678,src:"images/CommodityItemImg1.jpg",name:"无敌是多么的寂寞无敌是多么的寂寞无敌是多么的寂寞",info:"无敌是多么的寂寞无敌是多么的寂寞",price:19999.00,shopid:13579,ordercount:10},
+// {id:1234567899,src:"images/images3.png",name:"大彩笔大彩笔郝轲大彩笔大彩笔郝轲",info:"大彩笔大彩笔大彩笔大彩笔大彩笔大彩笔",price:18899.00,shopid:13579,ordercount:99}];    /*商品列表*/
+
 if (commidityGroup.length == 0) {
   document.querySelector("#body-cart").innerHTML += "<div class='alertInfo'>“购物车中没有商品，快去添加吧”</div>";
 }
@@ -157,6 +166,8 @@ function ArrayOutput() {
   let object = document.getElementsByClassName("commodity");
   let checkedContainer = [];
   let outputContainer = [];
+  let output = {};
+  output["data"] = outputContainer;
 
   for (let i = 0; i < object.length; i++) {
     if(object[i].childNodes[1].firstChild.firstChild.checked){
@@ -165,6 +176,7 @@ function ArrayOutput() {
   }
   for (let i = 0; i < commidityGroup.length; i++) {
     if (contain(checkedContainer,commidityGroup[i].id)) {
+      commidityGroup[i]["order"] = document.getElementById(commidityGroup[i].id).childNodes[1].childNodes[3].childNodes[1].value;
       outputContainer.push(commidityGroup[i]);
     }
   }
@@ -172,10 +184,11 @@ function ArrayOutput() {
     alert("At Least One Goods");
   }
   else {
-    console.log(outputContainer);
+    return output;
   }
 }
 
 document.querySelector("#shoppingCartSubmit").onclick = function(){
-  ArrayOutput();
+  localStorage.json = JSON.stringify(ArrayOutput());
+    window.location = "settlement.html";
 }

@@ -1,22 +1,20 @@
 
+function getJson(url){
+  let xhr = new XMLHttpRequest();
+  xhr.open("GET",url,false);
+  xhr.send();
+  return JSON.parse(xhr.response);
+}
+
+
 let recomClassGroup = [
 {id:1234,name:"Haoke的Q币",src:"images/class1.png"},
 {id:123,name:"新鲜的Dingzhiwei",src:"images/class2.png"},
 {id:12345,name:"大只的yangweibin",src:"images/class3.jpg"}];
-let recomCommGroup = [
-{id:1234561,classid:123,src:"images/1.jpg",info:"最强大的HaoKeHAHAHAHAHA",price:19999.00},
-{id:1234562,classid:123,src:"images/2.png",info:"最强大的HaoKeHAHAHAHAHA",price:18888.00},
-{id:1234563,classid:123,src:"images/3.png",info:"最强大的HaoKeHAHAHAHAHA",price:17777.70},
-{id:1234564,classid:123,src:"images/4.png",info:"最强大的HaoKeHAHAHAHAHA",price:17677.70},
-{id:123451,classid:1234,src:"images/5.png",info:"DDDDDDD",price:1999.00},
-{id:123452,classid:1234,src:"images/6.jpg",info:"DDDDDDD",price:1777.70},
-{id:123453,classid:1234,src:"images/7.jpg",info:"DDDDDDD",price:1988.00},
-{id:123454,classid:1234,src:"images/8.png",info:"DDDDDDD",price:1988.00},
-{id:12341,classid:12345,src:"images/9.jpg",info:"HahahahahaHHHA",price:15489.00},
-{id:12342,classid:12345,src:"images/10.jpg",info:"HahahahahaHHHA",price:15789.00},
-{id:12343,classid:12345,src:"images/11.png",info:"HahahahahaHHHA",price:15489.00},
-{id:12344,classid:12345,src:"images/12.png",info:"HahahahahaHHHA",price:15489.00}
-];
+
+let recomCommGroup = getJson("json/recomClassGroup.json").data;
+
+
 if (recomCommGroup.length == 0) {
   document.querySelector(".recommend").innerHTML += "<div class='alertInfo'>“暂无可推荐商品，快去购物吧”</div>";
 }

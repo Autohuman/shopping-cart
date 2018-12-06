@@ -413,7 +413,8 @@ shoppingCartFinal em{
     font-family: 微软雅黑;
     font-weight: bold;
     display: inline;
-    margin-left: 30px;
+    float: right;
+    margin-right: 100px;
     height: 100%;
     width: 85px;
     background-color: rgba(255, 25, 0, 0.71);

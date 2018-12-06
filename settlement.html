@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>订单结算页</title>
+    <link href="css/style.css" type="text/css" rel="stylesheet" />
+    <script src="js/jquery.js" type="text/javascript"></script>
+</head>
+<body>
+<nav class="haoNav">
+    <img class="navLogo" src="images/logo.jpg" />
+    <div class="haoMenu">
+        <ul id="navigationUl">
+            <li><a class="navSuperContent" href="#">HOME</a></li>
+            <li><a class="navSuperContent" href="#">ABOUT</a></li>
+            <li><a class="navSuperContent" href="#">PRODUCTS</a></li>
+            <li><a class="navSuperContent" href="#">SERVICES</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="searchBox">
+    <div class="searchoxLogo">
+        <img src="images/google.png" />
+    </div>
+    <div class="searchEngine">此处或应有搜索框</div>
+</div>
+<span id="info">填写并核对信息</span>
+<div id="body">
+    <div id="receiverInfo">
+        <span>收货人信息</span>
+        <a href="#">新增收货地址</a>
+        <div class="selectRecl">
+        </div>
+    </div>
+    <div id="payment">
+        <span>支付方式</span>
+        <div class="payChose">
+            <button class="btn">货到付款</button>
+            <button class="btn">扫码付款</button>
+        </div>
+    </div>
+    <div id="productList">
+        <span>送货清单</span>
+        <a class="someInfo" href="#">价格说明</a>
+        <a class="someInfo" href="#">返回修改购物车</a>
+        <div id="spaceHolder"></div>
+        <div id="delivery">
+            <span>配送方式</span>
+            <button class="btn btn-delivery">货到付款</button>
+            <p>预计送达：<br />2018/2/4 14:00以前</p>
+        </div>
+        <div id="list">
+        </div>
+        <div id="listInFinal">
+            <div class="info"><p>应付总额:<em>￥19999.00</em></p>
+                <p id="address">配送至:<i>哈哈</i></p>
+            </div>
+            <a class="purchaseBtn" href="payment.html">去支付</a>
+        </div>
+    </div>
+    <div class="footer">哈哈哈哈</div>
+</div>
+<script src="js/content.js" type="text/javascript"></script>
+<script src="js/receiver.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+    $(".btn").click(function (event) {
+        $(this).toggleClass("btnClick");
+    });
+});
+</script>
+</body>
+</html>
