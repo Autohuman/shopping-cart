@@ -56,7 +56,7 @@
             <div class="info"><p>应付总额:<em>￥19999.00</em></p>
                 <p id="address">配送至:<i>哈哈</i></p>
             </div>
-            <a class="purchaseBtn" href="payment.html">去支付</a>
+            <a class="purchaseBtn">去支付</a>
         </div>
     </div>
     <div class="footer">哈哈哈哈</div>
@@ -69,6 +69,41 @@ $(document).ready(function () {
         $(this).toggleClass("btnClick");
     });
 });
+</script>
+<script type="text/javascript">
+		let randNum = "201812111429169";
+		randNum += Math.round(Math.random()*10);
+		randNum += Math.round(Math.random()*10);
+		let countPrice = 0;
+		for (let i = 0; i < JSON.parse(localStorage.json).data.length; i++) {
+		  countPrice += JSON.parse(localStorage.json).data[i].order * JSON.parse(localStorage.json).data[i].price;
+		};
+		document.querySelector(".purchaseBtn").onclick = function(){
+			Form = document.createElement("form");
+			Form.name = "alipayment";
+			Form.style.display = "none";
+			Form.action = "alipay/pagepay/pagepay.php";
+			Form.method = "post";
+			Form.target = "_parent";
+			create1 = document.createElement("input");
+			create1.name = "WIDout_trade_no";
+			create1.value = randNum;
+			create2 = document.createElement("input");
+			create2.name = "WIDsubject";
+			create2.value = "购物车结算";
+			create3 = document.createElement("input");
+			create3.name = "WIDtotal_amount";
+			create3.value = countPrice;
+			create4 = document.createElement("input");
+			create4.name = "WIDbody";
+			create4.value = "群星电商网站";
+			Form.appendChild(create1);
+			Form.appendChild(create2);
+			Form.appendChild(create3);
+			Form.appendChild(create4);
+			document.body.appendChild(Form);
+			Form.submit();
+		}
 </script>
 </body>
 </html>

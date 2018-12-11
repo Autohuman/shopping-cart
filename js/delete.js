@@ -1,8 +1,8 @@
 /*定义删除单个商品*/
 let deleteGroup = document.getElementsByClassName("delete");
 for (let i = 0; i < deleteGroup.length; i++) {
-  deleteGroup[i].onclick = function(){
-    let commodityDelete = deleteGroup[i].parentNode.parentNode.parentNode;
+  deleteGroup[i].onclick = function(event){
+    let commodityDelete = event.target.parentNode.parentNode.parentNode;
     let checkboxDelete = commodityDelete.childNodes[1].firstChild.firstChild.checked;
     let deleteConfirm = confirm("请问是否确定从购物车删除该商品");
     if(deleteConfirm == true)
@@ -31,5 +31,6 @@ document.getElementById("deleteAll").onclick = function(){
     for (let i = 0; i < checkedCollection.length; i++) {
       checkedCollection[i].parentNode.parentNode.parentNode.parentNode.removeChild(checkedCollection[i].parentNode.parentNode.parentNode);
     }
+    calculateTotalPrice();
   }
 }

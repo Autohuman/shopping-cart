@@ -42,7 +42,6 @@ for (let i = 0; i < storeGroup.length; i++) {
           }
       }
     }
-
     calculateTotalPrice();
 }
 
@@ -116,6 +115,3 @@ for (let i = 0; i < singleCommidityGroup.length; i++) {
     calculateTotalPrice()
   }
 }
-
-
-/*结算按钮提交数组结果*/
